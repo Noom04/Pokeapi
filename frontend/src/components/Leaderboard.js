@@ -45,6 +45,10 @@ const Leaderboard = () => {
         navigate('/catch-game'); // นำทางกลับไปที่หน้าเกม
     };
 
+    const handleAboutAuthor = () => {
+        navigate('/about'); // นำทางไปยังหน้า About
+    };
+
     return (
         <div style={styles.container}>
             <h1 style={styles.title}>Leaderboard</h1>
@@ -62,6 +66,7 @@ const Leaderboard = () => {
             <div style={styles.buttonContainer}>
                 <button onClick={handleExitGame} style={styles.exitButton}>Exit Game</button>
                 <button onClick={handlePlayAgain} style={styles.playAgainButton}>Play Again</button>
+                <button onClick={handleAboutAuthor} style={styles.aboutButton}>About the Author</button>
             </div>
         </div>
     );
@@ -138,6 +143,16 @@ const styles = {
     playAgainButton: {
         padding: '10px 20px',
         backgroundColor: '#4CAF50',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        transition: 'background-color 0.3s',
+    },
+    aboutButton: {
+        padding: '10px 20px',
+        backgroundColor: '#3B4CCA',
         color: '#fff',
         border: 'none',
         borderRadius: '5px',

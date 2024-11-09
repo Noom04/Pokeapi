@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import PokemonCardGame from './components/PokemonCatchGame';
 import Leaderboard from './components/Leaderboard';
+import About from './components/About'; // นำเข้า About
 
 const App = () => {
     const [showSplash, setShowSplash] = useState(true);
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path="/catch-game" element={<PokemonCardGame username={loggedInUsername} />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/about" element={<About />} /> {/* เส้นทางใหม่ */}
                 </Routes>
             )}
         </Router>
