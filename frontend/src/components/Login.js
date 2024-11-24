@@ -1,8 +1,7 @@
-// Login.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => { // รับ onLogin เป็น prop
+const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [pokemon, setPokemon] = useState(null);
@@ -56,6 +55,22 @@ const Login = ({ onLogin }) => { // รับ onLogin เป็น prop
                         <img src={pokemon.sprites.front_default} alt={pokemon.name} style={styles.pokemonImage} />
                     </div>
                     <p style={styles.pokemonName}>{pokemon.name.toUpperCase()}</p>
+                    {/* เพิ่มคำอธิบายเกี่ยวกับเกมจับโปเกม่อน */}
+                    <div style={styles.descriptionContainer}>
+                        <p style={styles.description}>
+                            <strong>เกมจับโปเกม่อน:</strong> ผู้เล่นสามารถคลิกเลือกการ์ดโปเกม่อน โดยการ์ดแต่ละใบจะมีคะแนนสุ่มตั้งแต่ <strong>-100 ถึง 100</strong> 
+                            โดยผู้เล่นสามารถเลือกการ์ดที่ถูกสุ่มขึ้นมาได้จำนวน <strong>5 ใบ</strong>
+                        </p>
+                        <p style={styles.description}>
+                            หากไม่พอใจโปเกม่อนที่จับมาได้ ผู้เล่นสามารถปล่อยโปเกม่อนได้ <strong>3 ตัว</strong> 
+                            โดยเมื่อผู้เล่นพอใจคะแนนของตัวเองแล้ว สามารถกดส่งคะแนนเพื่อนำไปจัดอันดับได้
+                        </p>
+                        <p style={styles.description}>
+                            <strong>รหัสสำหรับทดสอบระบบ:</strong><br />
+                            <strong>Username:</strong> 1<br />
+                            <strong>Password:</strong> 1
+                        </p>
+                    </div>
                 </div>
             )}
             <div style={styles.form}>
@@ -82,9 +97,6 @@ const Login = ({ onLogin }) => { // รับ onLogin เป็น prop
     );
 };
 
-
-
-
 // Styles
 const styles = {
     container: {
@@ -93,15 +105,15 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        backgroundColor: '#87CEEB', // พื้นหลังสีฟ้าสดใสคล้าย Splash Screen
-        backgroundImage: 'radial-gradient(circle, #FFFFFF 1px, transparent 1px)', // จุดขาวคล้ายท้องฟ้า
+        backgroundColor: '#87CEEB',
+        backgroundImage: 'radial-gradient(circle, #FFFFFF 1px, transparent 1px)',
         backgroundSize: '20px 20px',
         textAlign: 'center',
     },
     title: {
         fontSize: '36px',
         fontWeight: 'bold',
-        color: '#FFCB05', // สีเหลืองธีมโปเกม่อน
+        color: '#FFCB05',
         textShadow: '3px 3px 8px rgba(0, 0, 0, 0.3)',
         marginBottom: '20px',
         fontFamily: 'Arial, sans-serif',
@@ -121,7 +133,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)', // เงาให้วงกลมดูมีมิติ
+        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
     },
     pokemonImage: {
         width: '100px',
@@ -130,9 +142,19 @@ const styles = {
     pokemonName: {
         fontSize: '20px',
         fontWeight: 'bold',
-        color: '#FF4500', // สีส้มสดใสเพื่อเน้นชื่อโปเกม่อน
+        color: '#FF4500',
         marginTop: '10px',
         textShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
+    },
+    descriptionContainer: {
+        marginTop: '10px',
+        textAlign: 'center',
+    },
+    description: {
+        fontSize: '16px',
+        color: '#333',
+        marginBottom: '10px',
+        lineHeight: '1.5',
     },
     form: {
         display: 'flex',
@@ -151,12 +173,12 @@ const styles = {
         borderRadius: '8px',
         border: '1px solid #ddd',
         fontSize: '16px',
-        boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.1)', // เงาด้านในให้กล่องดูมีมิติ
+        boxShadow: 'inset 0px 2px 4px rgba(0, 0, 0, 0.1)',
     },
     button: {
         width: '100%',
         padding: '12px',
-        backgroundColor: '#FFCC00', // สีเหลืองธีมโปเกม่อน
+        backgroundColor: '#FFCC00',
         color: '#333',
         fontWeight: 'bold',
         border: 'none',
@@ -164,7 +186,7 @@ const styles = {
         cursor: 'pointer',
         marginTop: '20px',
         fontSize: '16px',
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', // เงาให้ปุ่มดูโดดเด่น
+        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
         transition: 'background-color 0.3s',
     },
     footer: {
@@ -172,7 +194,7 @@ const styles = {
         color: '#333',
     },
     link: {
-        color: '#3B4CCA', // สีฟ้าเข้มเข้ากับธีมโปเกม่อน
+        color: '#3B4CCA',
         textDecoration: 'none',
         fontWeight: 'bold',
     },

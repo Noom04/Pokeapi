@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import profileImage from '../assets/profile.jpg';
 import advisorImage from '../assets/ผศ.ดร.ชัยพร.jpg';
 import citeLogo from '../assets/logo-cite-edit.jpg';
+import arc from '../assets/arc.png';
 
 const About = () => {
     const navigate = useNavigate();
@@ -13,24 +14,90 @@ const About = () => {
 
     return (
         <div style={styles.container}>
-            <h1 style={styles.title}>About This Project</h1>
+            <h1 style={styles.title}>เกี่ยวกับโปรเจกต์นี้</h1>
             
             <div style={styles.contentContainer}>
-                <img src={advisorImage} alt="Panya Leenavarat" style={styles.image} />
+                <img src={advisorImage} alt="ผศ.ดร.ชัยพร เขมะภาตะพันธ์" style={styles.image} />
                 <p style={styles.text}>
-                    This project is part of the Web Engineering course under the guidance and supervision of 
-                    <strong> Assistant Professor Dr. Chaiporn Kemapathapat</strong>. It is created by 
-                    <strong> Mr. Panya Leenavarat</strong>, a Master's student at the 
-                    <strong> College of Engineering and Technology, Dhurakij Pundit University</strong>.
+                    โปรเจกต์นี้เป็นส่วนหนึ่งของวิชา Web Engineering ภายใต้การควบคุมและให้คำปรึกษาโดย 
+                    <strong> ผศ.ดร.ชัยพร เขมะภาตะพันธ์</strong> จัดทำโดย 
+                    <strong> นายปัญญา หลีนวรัตน์</strong> นักศึกษาปริญญาโท คณะวิศวกรรมคอมพิวเตอร์ 
+                    มหาวิทยาลัยธุรกิจบัณฑิตย์
                 </p>
                 
-                <img src={profileImage} alt="Assistant Professor Dr. Chaiporn Kemapathapat" style={styles.image} />
-                <img src={citeLogo} alt="CITE Logo" style={styles.logo} />
-                
-                <p style={styles.thankYouText}>Thank you for viewing!</p>
+                <img src={profileImage} alt="นายปัญญา หลีนวรัตน์" style={styles.image} />
+                <img src={citeLogo} alt="โลโก้ CITE" style={styles.logo} />
             </div>
 
-            <button onClick={handleBackToHome} style={styles.backButton}>Back to Home</button>
+            {/* เพิ่มเนื้อหาจาก README.md */}
+            <div style={styles.additionalContent}>
+                <h2 style={styles.subtitle}>ภาพรวมของโปรเจกต์</h2>
+                <img src={arc} alt="การทำงานของระบบ " style={styles.logo} />
+                <p style={styles.text}>
+                    โปรเจกต์นี้เป็นเกมการ์ดโปเกม่อนที่ใช้ <strong>PokeAPI</strong> ผู้เล่นสามารถโต้ตอบกับเกม 
+                    เช่น เลือกการ์ดโปเกม่อนที่สุ่มขึ้นมา ระบบยังมีการบันทึกคะแนนในฐานข้อมูล SQLite 
+                    และจัดอันดับคะแนนผู้เล่นผ่าน Leaderboard
+                </p>
+
+                <h2 style={styles.subtitle}>คุณสมบัติหลัก</h2>
+                <ul style={styles.list}>
+                    <li>ระบบสมัครสมาชิกและเข้าสู่ระบบ: ใช้ Express และ SQLite เพื่อจัดการข้อมูลผู้ใช้</li>
+                    <li>ระบบจัดอันดับคะแนน (Leaderboard): แสดงคะแนนสูงสุดของผู้เล่น</li>
+                    <li>เกมการ์ดโปเกม่อน: การ์ดแต่ละใบจะมีคะแนนสุ่มตั้งแต่ -100 ถึง 100</li>
+                    <li>รองรับ Docker: สามารถดีพลอยด้วย Docker Compose</li>
+                </ul>
+
+                <h2 style={styles.subtitle}>โครงสร้างโปรเจกต์</h2>
+                <pre style={styles.codeBlock}>
+{`project-root
+├── backend
+│   ├── index.ts          # โค้ดเซิร์ฟเวอร์หลัก
+│   ├── package.json      # ข้อมูลแพ็กเกจ Node.js สำหรับ backend
+│   └── tsconfig.json     # การตั้งค่า TypeScript
+├── frontend
+│   ├── src
+│   │   ├── App.js        # โค้ดหลักของ React frontend
+│   │   └── components    # คอมโพเนนต์ต่าง ๆ
+│   └── package.json      # ข้อมูลแพ็กเกจ Node.js สำหรับ frontend
+└── docker-compose.yml    # การตั้งค่า Docker Compose`}
+                </pre>
+
+                <h2 style={styles.subtitle}>วิธีการใช้งาน</h2>
+                <h3 style={styles.sectionTitle}>การใช้งานผ่าน Docker</h3>
+                <p style={styles.text}>
+                    ติดตั้ง Docker และ Docker Compose จากนั้นรันคำสั่ง:
+                </p>
+                <pre style={styles.codeBlock}>
+{`docker-compose up --build`}
+                </pre>
+                <p style={styles.text}>
+                    คำสั่งนี้จะ build และรันบริการ backend และ frontend ตามที่กำหนดไว้ในไฟล์ docker-compose.yml
+                </p>
+
+                <h3 style={styles.sectionTitle}>การใช้งานโดยไม่ใช้ Docker</h3>
+                <ol style={styles.list}>
+                    <li>
+                        ไปที่โฟลเดอร์ <code>backend</code> และติดตั้ง dependencies:
+                        <pre style={styles.codeBlock}>
+{`cd backend
+npm install
+npm start`}
+                        </pre>
+                    </li>
+                    <li>
+                        ไปที่โฟลเดอร์ <code>frontend</code> และติดตั้ง dependencies:
+                        <pre style={styles.codeBlock}>
+{`cd ../frontend
+npm install
+npm start`}
+                        </pre>
+                    </li>
+                </ol>
+            </div>
+
+            <p style={styles.thankYouText}>ขอบคุณที่รับชมโปรเจกต์นี้!</p>
+
+            <button onClick={handleBackToHome} style={styles.backButton}>กลับไปที่หน้าหลัก</button>
         </div>
     );
 };
@@ -50,6 +117,13 @@ const styles = {
         fontWeight: 'bold',
         color: '#3B4CCA',
         marginBottom: '20px',
+    },
+    subtitle: {
+        fontSize: '24px',
+        fontWeight: 'bold',
+        color: '#3B4CCA',
+        marginTop: '20px',
+        marginBottom: '10px',
     },
     contentContainer: {
         display: 'flex',
@@ -71,11 +145,28 @@ const styles = {
         height: 'auto',
         margin: '20px 0',
     },
+    additionalContent: {
+        maxWidth: '800px',
+        textAlign: 'left',
+        marginTop: '20px',
+    },
     text: {
         fontSize: '18px',
         color: '#333',
         lineHeight: '1.6',
         marginBottom: '20px',
+    },
+    list: {
+        paddingLeft: '20px',
+        marginBottom: '20px',
+    },
+    codeBlock: {
+        backgroundColor: '#f4f4f4',
+        padding: '10px',
+        borderRadius: '5px',
+        fontFamily: 'monospace',
+        marginBottom: '20px',
+        overflowX: 'auto',
     },
     thankYouText: {
         fontSize: '18px',
